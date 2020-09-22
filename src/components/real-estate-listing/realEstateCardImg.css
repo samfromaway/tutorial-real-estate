@@ -1,0 +1,24 @@
+.realEstateCardImg {
+  position: relative;
+  margin-bottom: 10px;
+  /*to align the reference correctly*/
+  display: flex;
+}
+
+.realEstateCardImg__img {
+  width: 100%;
+  height: 200px;
+  border-radius: 5px 5px 0 0;
+  object-fit: cover;
+}
+
+.realEstateCardImg__reference {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: rgb(13, 18, 63);
+  color: white;
+  padding: 5px;
+  font-size: 1.1rem;
+  border-radius: 5px 0 0 0;
+}
