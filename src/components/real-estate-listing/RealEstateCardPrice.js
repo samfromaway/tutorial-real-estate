@@ -1,8 +1,9 @@
 import React from 'react';
 import './realEstateCardPrice.css';
 
-const RealEstateCardPrice = () => {
-  return <h4 className="realEstateCardPrice">price</h4>;
+const RealEstateCardPrice = ({ price }) => {
+  const priceContent = price.toLocaleString();
+  return <h4 className="realEstateCardPrice">{priceContent}</h4>;
 };
 
 export default RealEstateCardPrice;

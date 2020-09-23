@@ -1,12 +1,11 @@
 import React from 'react';
-import House01 from '../../images/house01.jpg';
 import './realEstateCardImg.css';
 
-const RealEstateCardImg = () => {
+const RealEstateCardImg = ({ img, title, id }) => {
   return (
     <div className="realEstateCardImg">
-      <img src={House01} alt="" className="realEstateCardImg__img" />
-      <p className="realEstateCardImg__reference">ref</p>
+      <img src={img} alt={title} className="realEstateCardImg__img" />
+      <p className="realEstateCardImg__reference">{id}</p>
     </div>
   );
 };
