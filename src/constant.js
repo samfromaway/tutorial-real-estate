@@ -1,4 +1,4 @@
 export const LOCATIONS = [
-  { title: 'Los Angeles', value: 'losAngeles' },
-  { title: 'New York', value: 'newYork' },
+  { title: 'Los Angeles', value: 'la' },
+  { title: 'New York', value: 'ny' },
 ];
