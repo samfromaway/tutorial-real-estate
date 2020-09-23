@@ -1,10 +1,11 @@
 import React from 'react';
 import RealEstateFilter from './RealEstateFilter';
+import './realEstateHeader.css';
 
 const RealEstateHeader = () => {
   return (
-    <div>
-      <h1>Title</h1>
+    <div className="realEstateHeader">
+      <h1>Real Estate App</h1>
       <RealEstateFilter />
     </div>
   );
