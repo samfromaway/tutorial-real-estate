@@ -1,6 +1,5 @@
 import React from 'react';
 import { LOCATIONS } from './../../constant';
-import './realEstateInputs.css';
 
 const RealEstateInputs = ({
   isEdit,
@@ -35,7 +34,7 @@ const RealEstateInputs = ({
         />
       </div>
       <div className="inputGroup">
-        <label htmlFor="title">Location</label>
+        <label htmlFor="location">Location</label>
         <select
           name="location"
           value={location}
