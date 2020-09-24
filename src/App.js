@@ -2,58 +2,37 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import RealEstateHeader from './components/real-estate-header/RealEstateHeader';
 import RealEstateListing from './components/real-estate-listing/RealEstateListing';
-import House01 from './images/house01.jpg';
 
 const listings = [
   {
     title: 'Nice Home1',
-    img: House01,
-    rooms: '2',
     location: 'New York',
-    locationValue: 'ny',
-    area: 500,
     price: 500000,
-    id: 'X109',
+    id: '109',
   },
   {
     title: 'Nice Home2',
-    img: House01,
-    rooms: '3',
     location: 'Los Angeles',
-    locationValue: 'la',
-    area: 500,
     price: 500000,
-    id: 'X108',
+    id: '108',
   },
   {
     title: 'Nice Home3',
-    img: House01,
-    rooms: '1',
     location: 'New York',
-    locationValue: 'ny',
-    area: 500,
     price: 500000,
-    id: 'X107',
+    id: '107',
   },
   {
     title: 'Nice Home4',
-    img: House01,
-    rooms: '2',
     location: 'Los Angeles',
-    locationValue: 'la',
-    area: 500,
     price: 500000,
-    id: 'X106',
+    id: '106',
   },
   {
     title: 'Nice Home5',
-    img: House01,
-    rooms: '5',
     location: 'New York',
-    locationValue: 'ny',
-    area: 500,
     price: 500000,
-    id: 'X105',
+    id: '105',
   },
 ];
 
@@ -68,7 +47,7 @@ function App() {
   const filter = (query) => {
     if (query) {
       const filteredListings = listings.filter(
-        (listing) => listing.locationValue === query
+        (listing) => listing.location === query
       );
       setFilteredListings(filteredListings);
     } else setFilteredListings(listings);

@@ -8,7 +8,7 @@ const RealEstateFilter = ({ query, handleQueryChange }) => {
       <select name="location" value={query} onChange={handleQueryChange}>
         <option value="">All Locations</option>
         {LOCATIONS.map((location) => (
-          <option key={location.value} value={location.value}>
+          <option key={location.value} value={location.title}>
             {location.title}
           </option>
         ))}
