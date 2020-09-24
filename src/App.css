@@ -61,3 +61,7 @@ button:hover {
   height: 30px;
   background-color: rgb(184, 184, 184);
 }
+
+.button {
+  margin: 0 10px 10px 0;
+}

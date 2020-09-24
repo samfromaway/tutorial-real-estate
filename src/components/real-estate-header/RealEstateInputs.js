@@ -10,6 +10,8 @@ const RealEstateInputs = ({
   setPrice,
   location,
   setLocation,
+  clearInput,
+  handleAddOrEditClick,
 }) => {
   const buttonContent = isEdit ? 'Edit' : 'Add';
   return (
@@ -47,7 +49,12 @@ const RealEstateInputs = ({
           ))}
         </select>
       </div>
-      <button className="button">{buttonContent}</button>
+      <button className="button" onClick={handleAddOrEditClick}>
+        {buttonContent}
+      </button>
+      <button className="button" onClick={clearInput}>
+        Clear
+      </button>
     </div>
   );
 };

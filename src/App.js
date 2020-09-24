@@ -45,6 +45,7 @@ function App() {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
   const [location, setLocation] = useState('');
+  const [currentListing, setCurrentListing] = useState('');
   const currentListings = isFiltered ? filteredListings : listings;
 
   const handleQueryChange = (e) => {
@@ -58,6 +59,7 @@ function App() {
   const handleEditClick = (e) => {
     const item = listings.filter((listing) => listing.id === e.target.value);
     setIsEdit(true);
+    setCurrentListing(item[0]);
     setTitle(item[0].title);
     setPrice(item[0].price);
     setLocation(item[0].location);
@@ -68,6 +70,43 @@ function App() {
       (listing) => listing.id !== e.target.value
     );
     setListings(newListings);
+  };
+
+  const clearInput = () => {
+    setIsEdit(false);
+    setTitle('');
+    setPrice('');
+    setLocation('');
+  };
+
+  const handleAddOrEditClick = () => {
+    if (isEdit) {
+      const newListing = {
+        title,
+        location,
+        price,
+        id: currentListing.id,
+      };
+      editCurrentListing(newListing);
+    } else {
+      const newListing = {
+        title,
+        location,
+        price,
+        id: Math.floor(Math.random() * 101).toLocaleString(),
+      };
+      addListing(newListing);
+    }
+  };
+
+  const editCurrentListing = (newListing) => {
+    listings.map((listing) =>
+      listing.id === currentListing.id ? newListing : listing
+    );
+  };
+
+  const addListing = (newListing) => {
+    setListings([newListing, ...listings]);
   };
 
   // const filter = (query) => {
@@ -100,6 +139,8 @@ function App() {
         setPrice={setPrice}
         location={location}
         setLocation={setLocation}
+        clearInput={clearInput}
+        handleAddOrEditClick={handleAddOrEditClick}
       />
       <RealEstateListing
         listings={currentListings}

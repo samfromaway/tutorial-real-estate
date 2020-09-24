@@ -13,6 +13,8 @@ const RealEstateHeader = ({
   location,
   setLocation,
   isEdit,
+  clearInput,
+  handleAddOrEditClick,
 }) => {
   return (
     <div className="realEstateHeader">
@@ -25,6 +27,8 @@ const RealEstateHeader = ({
         location={location}
         setLocation={setLocation}
         isEdit={isEdit}
+        clearInput={clearInput}
+        handleAddOrEditClick={handleAddOrEditClick}
       />
       <RealEstateFilter query={query} handleQueryChange={handleQueryChange} />
     </div>
