@@ -17,16 +17,34 @@ body {
 }
 
 select {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   height: 30px;
   border-radius: 5px;
   font-size: 1.1rem;
   cursor: pointer;
   width: 100%;
   padding: 0 10px;
+  width: 300px;
 }
 
-/* button {
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  width: 300px;
+}
+
+.inputGroup label {
+  margin-bottom: 3px;
+}
+
+.inputGroup input {
+  height: 30px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+button {
   height: 30px;
   background-color: white;
   border: white;
@@ -40,4 +58,4 @@ select {
 button:hover {
   height: 30px;
   background-color: rgb(184, 184, 184);
-} */
+}

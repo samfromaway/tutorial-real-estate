@@ -12,13 +12,16 @@
   object-fit: cover;
 }
 
-.realEstateCardImg__reference {
+.realEstateCardImg__editButton {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-radius: 0 5px 0 0;
+}
+
+.realEstateCardImg__deleteButton {
   position: absolute;
   bottom: 0;
   right: 0;
-  background-color: rgb(13, 18, 63);
-  color: white;
-  padding: 5px;
-  font-size: 1.1rem;
   border-radius: 5px 0 0 0;
 }

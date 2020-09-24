@@ -1,5 +1,8 @@
 .realEstateFilter {
   display: flex;
   flex-direction: column;
-  width: 300px;
+  align-items: center;
+  width: 100%;
+  background-color: green;
+  padding: 20px 0 10px 0;
 }

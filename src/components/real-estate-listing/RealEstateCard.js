@@ -8,7 +8,7 @@ import './realEstateCard.css';
 const RealEstateCard = ({ data }) => {
   return (
     <div className="realEstateCard">
-      <RealEstateCardImg img={data.img} title={data.title} id={data.id} />
+      <RealEstateCardImg title={data.title} />
       <RealEstateCardTitle title={data.title} />
       <hr />
       <RealEstateCardDetails
