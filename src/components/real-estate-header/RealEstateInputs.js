@@ -28,7 +28,7 @@ const RealEstateInputs = ({
       <div className="inputGroup">
         <label htmlFor="price">Price</label>
         <input
-          type="number"
+          type="text"
           name="price"
           value={price}
           onChange={(e) => setPrice(e.target.value)}

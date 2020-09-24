@@ -56,6 +56,7 @@ function App() {
     setQuery(e.target.value);
     // filter(e.target.value);
   };
+
   const handleEditClick = (e) => {
     const item = listings.filter((listing) => listing.id === e.target.value);
     setIsEdit(true);
@@ -84,7 +85,7 @@ function App() {
       const newListing = {
         title,
         location,
-        price,
+        price: +price,
         id: currentListing.id,
       };
       editCurrentListing(newListing);
@@ -92,16 +93,19 @@ function App() {
       const newListing = {
         title,
         location,
-        price,
+        price: +price,
         id: Math.floor(Math.random() * 101).toLocaleString(),
       };
       addListing(newListing);
     }
+    clearInput();
   };
 
   const editCurrentListing = (newListing) => {
-    listings.map((listing) =>
-      listing.id === currentListing.id ? newListing : listing
+    setListings(
+      listings.map((listing) =>
+        listing.id === currentListing.id ? newListing : listing
+      )
     );
   };
 
