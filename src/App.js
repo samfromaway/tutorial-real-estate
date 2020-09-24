@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './App.css';
 import RealEstateHeader from './components/real-estate-header/RealEstateHeader';
 import RealEstateListing from './components/real-estate-listing/RealEstateListing';
 
-function App() {
-  const initialState = [
+class App extends React.Component {
+  initialState = [
     {
       title: 'Nice Home1',
       location: 'New York',
@@ -36,126 +36,152 @@ function App() {
       id: '105',
     },
   ];
-
-  const [query, setQuery] = useState('');
-  const [listings, setListings] = useState(initialState);
-  const [filteredListings, setFilteredListings] = useState([]);
-  const [isFiltered, setIsFiltered] = useState(false);
-  const [isEdit, setIsEdit] = useState(false);
-  const [title, setTitle] = useState('');
-  const [price, setPrice] = useState('');
-  const [location, setLocation] = useState('');
-  const [currentListing, setCurrentListing] = useState('');
-  const currentListings = isFiltered ? filteredListings : listings;
-
-  const handleQueryChange = (e) => {
-    if (e.target.value) {
-      setIsFiltered(true);
-    } else setIsFiltered(false);
-
-    setQuery(e.target.value);
-    // filter(e.target.value);
+  state = {
+    query: '',
+    listings: this.initialState,
+    filteredListings: [],
+    isEdit: false,
+    title: '',
+    price: '',
+    location: '',
+    currentListing: {},
+    currentListings: [],
   };
 
-  const handleEditClick = (e) => {
-    const item = listings.filter((listing) => listing.id === e.target.value);
-    setIsEdit(true);
-    setCurrentListing(item[0]);
-    setTitle(item[0].title);
-    setPrice(item[0].price);
-    setLocation(item[0].location);
+  handleQueryChange = (e) => {
+    this.setState({ query: e.target.value });
   };
 
-  const handleDeleteClick = (e) => {
-    const newListings = listings.filter(
+  handleEditClick = (e) => {
+    const item = this.state.listings.filter(
+      (listing) => listing.id === e.target.value
+    );
+    this.setState({
+      isEdit: true,
+      currentListing: item[0],
+      title: item[0].title,
+      price: item[0].price,
+      location: item[0].location,
+    });
+  };
+
+  handleDeleteClick = (e) => {
+    const newListings = this.state.listings.filter(
       (listing) => listing.id !== e.target.value
     );
-    setListings(newListings);
+    this.setState({ listings: newListings });
   };
 
-  const clearInput = () => {
-    setIsEdit(false);
-    setTitle('');
-    setPrice('');
-    setLocation('');
+  clearInput = () => {
+    this.setState({
+      isEdit: false,
+      title: '',
+      price: '',
+      location: '',
+      currentListing: {},
+    });
   };
 
-  const handleAddOrEditClick = () => {
-    if (isEdit) {
+  handleAddOrEditClick = () => {
+    if (this.state.isEdit) {
       const newListing = {
-        title,
-        location,
-        price: +price,
-        id: currentListing.id,
+        title: this.state.title,
+        location: this.state.location,
+        price: +this.state.price,
+        id: this.state.currentListing.id,
       };
-      editCurrentListing(newListing);
+      this.editCurrentListing(newListing);
     } else {
       const newListing = {
-        title,
-        location,
-        price: +price,
+        title: this.state.title,
+        location: this.state.location,
+        price: +this.state.price,
         id: Math.floor(Math.random() * 101).toLocaleString(),
       };
-      addListing(newListing);
+      this.addListing(newListing);
     }
-    clearInput();
+    this.clearInput();
   };
 
-  const editCurrentListing = (newListing) => {
-    setListings(
-      listings.map((listing) =>
-        listing.id === currentListing.id ? newListing : listing
-      )
+  editCurrentListing = (newListing) => {
+    this.setState({
+      listings: this.state.listings.map((listing) =>
+        listing.id === this.state.currentListing.id ? newListing : listing
+      ),
+      isEdit: true,
+    });
+  };
+
+  addListing = (newListing) => {
+    this.setState({ listings: [newListing, ...this.state.listings] });
+  };
+
+  setPrice = (e) => {
+    this.setState({ price: e.target.value });
+  };
+
+  setTitle = (e) => {
+    this.setState({ title: e.target.value });
+  };
+
+  setLocation = (e) => {
+    this.setState({ location: e.target.value });
+  };
+
+  componentDidMount() {
+    this.setState({ currentListings: this.state.listings });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // if query or listings change run...
+    if (
+      this.state.listings !== prevState.listings ||
+      this.state.query !== prevState.query
+    ) {
+      if (this.state.query) {
+        const filteredListings = this.state.listings.filter(
+          (listing) => listing.location === this.state.query
+        );
+        this.setState({
+          filteredListings: filteredListings,
+          currentListings: filteredListings,
+        });
+      } else
+        this.setState({
+          filteredListings: [],
+          currentListings: this.state.listings,
+        });
+    }
+  }
+
+  render() {
+    console.log(this.state);
+    return (
+      <div className="app">
+        <RealEstateHeader
+          query={this.state.query}
+          handleQueryChange={this.handleQueryChange}
+          isEdit={this.state.isEdit}
+          title={this.state.title}
+          price={this.state.price}
+          location={this.state.location}
+          clearInput={this.clearInput}
+          handleAddOrEditClick={this.handleAddOrEditClick}
+          setPrice={this.setPrice}
+          setTitle={this.setTitle}
+          setLocation={this.setLocation}
+        />
+        {this.state.currentListings.length === 0 && (
+          <h2 style={{ paddingTop: 10, textAlign: 'center' }}>No Results</h2>
+        )}
+        <RealEstateListing
+          listings={this.state.currentListings}
+          handleEditClick={this.handleEditClick}
+          handleDeleteClick={this.handleDeleteClick}
+        />
+      </div>
     );
-  };
-
-  const addListing = (newListing) => {
-    setListings([newListing, ...listings]);
-  };
-
-  // const filter = (query) => {
-  //   if (query) {
-  //     const filteredListings = listings.filter(
-  //       (listing) => listing.location === query
-  //     );
-  //     setFilteredListings(filteredListings);
-  //   } else setFilteredListings([]);
-  // };
-
-  useEffect(() => {
-    if (query) {
-      const filteredListings = listings.filter(
-        (listing) => listing.location === query
-      );
-      setFilteredListings(filteredListings);
-    } else setFilteredListings([]);
-  }, [listings, query]);
-
-  return (
-    <div className="app">
-      <RealEstateHeader
-        query={query}
-        handleQueryChange={handleQueryChange}
-        isEdit={isEdit}
-        title={title}
-        setTitle={setTitle}
-        price={price}
-        setPrice={setPrice}
-        location={location}
-        setLocation={setLocation}
-        clearInput={clearInput}
-        handleAddOrEditClick={handleAddOrEditClick}
-      />
-      {currentListings.length === 0 && (
-        <h2 style={{ paddingTop: 10, textAlign: 'center' }}>No Results</h2>
-      )}
-      <RealEstateListing
-        listings={currentListings}
-        handleEditClick={handleEditClick}
-        handleDeleteClick={handleDeleteClick}
-      />
-    </div>
-  );
+  }
 }
 
 export default App;

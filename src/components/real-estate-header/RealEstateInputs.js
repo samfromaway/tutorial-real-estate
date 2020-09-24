@@ -2,9 +2,9 @@ import React from 'react';
 import { LOCATIONS } from './../../constant';
 
 class RealEstateInputs extends React.Component {
-  buttonContent = this.props.isEdit ? 'Change' : 'Add';
-
   render() {
+    const buttonContent = this.props.isEdit ? 'Change' : 'Add';
+
     return (
       <div>
         <div className="inputGroup">
@@ -13,7 +13,7 @@ class RealEstateInputs extends React.Component {
             type="text"
             name="title"
             value={this.props.title}
-            onChange={(e) => this.props.setTitle(e.target.value)}
+            onChange={this.props.setTitle}
           />
         </div>
         <div className="inputGroup">
@@ -22,7 +22,7 @@ class RealEstateInputs extends React.Component {
             type="text"
             name="price"
             value={this.props.price}
-            onChange={(e) => this.props.setPrice(e.target.value)}
+            onChange={this.props.setPrice}
           />
         </div>
         <div className="inputGroup">
@@ -30,7 +30,7 @@ class RealEstateInputs extends React.Component {
           <select
             name="location"
             value={this.props.location}
-            onChange={(e) => this.props.setLocation(e.target.value)}
+            onChange={this.props.setLocation}
           >
             <option value="">Choose Location</option>
             {LOCATIONS.map((location) => (
@@ -41,7 +41,7 @@ class RealEstateInputs extends React.Component {
           </select>
         </div>
         <button className="button" onClick={this.props.handleAddOrEditClick}>
-          {this.buttonContent}
+          {buttonContent}
         </button>
         <button className="button" onClick={this.props.clearInput}>
           Clear
