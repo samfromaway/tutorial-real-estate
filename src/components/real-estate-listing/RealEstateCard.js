@@ -5,26 +5,28 @@ import RealEstateCardTitle from './RealEstateCardTitle';
 import RealEstateCardPrice from './RealEstateCardPrice';
 import './realEstateCard.css';
 
-const RealEstateCard = ({ data, handleEditClick, handleDeleteClick }) => {
-  return (
-    <div className="realEstateCard">
-      <RealEstateCardImg
-        title={data.title}
-        handleEditClick={handleEditClick}
-        handleDeleteClick={handleDeleteClick}
-        id={data.id}
-      />
-      <RealEstateCardTitle title={data.title} />
-      <hr />
-      <RealEstateCardDetails
-        location={data.location}
-        rooms={data.rooms}
-        area={data.area}
-      />
-      <hr />
-      <RealEstateCardPrice price={data.price} />
-    </div>
-  );
-};
+class RealEstateCard extends React.Component {
+  render() {
+    return (
+      <div className="realEstateCard">
+        <RealEstateCardImg
+          title={this.props.data.title}
+          handleEditClick={this.props.handleEditClick}
+          handleDeleteClick={this.props.handleDeleteClick}
+          id={this.props.data.id}
+        />
+        <RealEstateCardTitle title={this.props.data.title} />
+        <hr />
+        <RealEstateCardDetails
+          location={this.props.data.location}
+          rooms={this.props.data.rooms}
+          area={this.props.data.area}
+        />
+        <hr />
+        <RealEstateCardPrice price={this.props.data.price} />
+      </div>
+    );
+  }
+}
 
 export default RealEstateCard;

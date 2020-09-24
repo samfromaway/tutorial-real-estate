@@ -146,6 +146,9 @@ function App() {
         clearInput={clearInput}
         handleAddOrEditClick={handleAddOrEditClick}
       />
+      {currentListings.length === 0 && (
+        <h2 style={{ paddingTop: 10, textAlign: 'center' }}>No Results</h2>
+      )}
       <RealEstateListing
         listings={currentListings}
         handleEditClick={handleEditClick}

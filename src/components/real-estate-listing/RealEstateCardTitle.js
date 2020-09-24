@@ -1,8 +1,12 @@
 import React from 'react';
 import './realEstateCardTitle.css';
 
-const RealEstateCardTitle = ({ title }) => {
-  return <h2 className="realEstateCardTitle">{title}</h2>;
-};
+class RealEstateCardTitle extends React.Component {
+  title = this.props.title;
+
+  render() {
+    return <h2 className="realEstateCardTitle">{this.title}</h2>;
+  }
+}
 
 export default RealEstateCardTitle;
