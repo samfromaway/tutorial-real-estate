@@ -12,7 +12,7 @@ const RealEstateInputs = ({
   clearInput,
   handleAddOrEditClick,
 }) => {
-  const buttonContent = isEdit ? 'Edit' : 'Add';
+  const buttonContent = isEdit ? 'Change' : 'Add';
   return (
     <div>
       <div className="inputGroup">
