@@ -5,10 +5,15 @@ import RealEstateCardTitle from './RealEstateCardTitle';
 import RealEstateCardPrice from './RealEstateCardPrice';
 import './realEstateCard.css';
 
-const RealEstateCard = ({ data }) => {
+const RealEstateCard = ({ data, handleEditClick, handleDeleteClick }) => {
   return (
     <div className="realEstateCard">
-      <RealEstateCardImg title={data.title} />
+      <RealEstateCardImg
+        title={data.title}
+        handleEditClick={handleEditClick}
+        handleDeleteClick={handleDeleteClick}
+        id={data.id}
+      />
       <RealEstateCardTitle title={data.title} />
       <hr />
       <RealEstateCardDetails

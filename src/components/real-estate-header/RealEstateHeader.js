@@ -3,11 +3,29 @@ import RealEstateFilter from './RealEstateFilter';
 import './realEstateHeader.css';
 import RealEstateInputs from './RealEstateInputs';
 
-const RealEstateHeader = ({ query, handleQueryChange }) => {
+const RealEstateHeader = ({
+  query,
+  handleQueryChange,
+  title,
+  setTitle,
+  price,
+  setPrice,
+  location,
+  setLocation,
+  isEdit,
+}) => {
   return (
     <div className="realEstateHeader">
       <h1>Real Estate App</h1>
-      <RealEstateInputs />
+      <RealEstateInputs
+        title={title}
+        setTitle={setTitle}
+        price={price}
+        setPrice={setPrice}
+        location={location}
+        setLocation={setLocation}
+        isEdit={isEdit}
+      />
       <RealEstateFilter query={query} handleQueryChange={handleQueryChange} />
     </div>
   );

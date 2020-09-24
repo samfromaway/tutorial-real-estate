@@ -1,70 +1,111 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import RealEstateHeader from './components/real-estate-header/RealEstateHeader';
 import RealEstateListing from './components/real-estate-listing/RealEstateListing';
 
-const listings = [
-  {
-    title: 'Nice Home1',
-    location: 'New York',
-    price: 500000,
-    id: '109',
-  },
-  {
-    title: 'Nice Home2',
-    location: 'Los Angeles',
-    price: 500000,
-    id: '108',
-  },
-  {
-    title: 'Nice Home3',
-    location: 'New York',
-    price: 500000,
-    id: '107',
-  },
-  {
-    title: 'Nice Home4',
-    location: 'Los Angeles',
-    price: 500000,
-    id: '106',
-  },
-  {
-    title: 'Nice Home5',
-    location: 'New York',
-    price: 500000,
-    id: '105',
-  },
-];
-
 function App() {
+  const initialState = [
+    {
+      title: 'Nice Home1',
+      location: 'New York',
+      price: 500000,
+      id: '109',
+    },
+    {
+      title: 'Nice Home2',
+      location: 'Los Angeles',
+      price: 500000,
+      id: '108',
+    },
+    {
+      title: 'Nice Home3',
+      location: 'New York',
+      price: 500000,
+      id: '107',
+    },
+    {
+      title: 'Nice Home4',
+      location: 'Los Angeles',
+      price: 500000,
+      id: '106',
+    },
+    {
+      title: 'Nice Home5',
+      location: 'New York',
+      price: 500000,
+      id: '105',
+    },
+  ];
+
   const [query, setQuery] = useState('');
+  const [listings, setListings] = useState(initialState);
   const [filteredListings, setFilteredListings] = useState([]);
+  const [isFiltered, setIsFiltered] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+  const [title, setTitle] = useState('');
+  const [price, setPrice] = useState('');
+  const [location, setLocation] = useState('');
+  const currentListings = isFiltered ? filteredListings : listings;
 
   const handleQueryChange = (e) => {
+    if (e.target.value) {
+      setIsFiltered(true);
+    } else setIsFiltered(false);
+
     setQuery(e.target.value);
+    // filter(e.target.value);
+  };
+  const handleEditClick = (e) => {
+    const item = listings.filter((listing) => listing.id === e.target.value);
+    setIsEdit(true);
+    setTitle(item[0].title);
+    setPrice(item[0].price);
+    setLocation(item[0].location);
   };
 
-  const filter = (query) => {
+  const handleDeleteClick = (e) => {
+    const newListings = listings.filter(
+      (listing) => listing.id !== e.target.value
+    );
+    setListings(newListings);
+  };
+
+  // const filter = (query) => {
+  //   if (query) {
+  //     const filteredListings = listings.filter(
+  //       (listing) => listing.location === query
+  //     );
+  //     setFilteredListings(filteredListings);
+  //   } else setFilteredListings([]);
+  // };
+
+  useEffect(() => {
     if (query) {
       const filteredListings = listings.filter(
         (listing) => listing.location === query
       );
       setFilteredListings(filteredListings);
-    } else setFilteredListings(listings);
-  };
-
-  useEffect(() => {
-    filter(query);
-  }, [query]);
-
-  //
-  //
-  //
+    } else setFilteredListings([]);
+  }, [listings, query]);
 
   return (
     <div className="app">
-      <RealEstateHeader query={query} handleQueryChange={handleQueryChange} />
-      <RealEstateListing listings={filteredListings} />
+      <RealEstateHeader
+        query={query}
+        handleQueryChange={handleQueryChange}
+        isEdit={isEdit}
+        title={title}
+        setTitle={setTitle}
+        price={price}
+        setPrice={setPrice}
+        location={location}
+        setLocation={setLocation}
+      />
+      <RealEstateListing
+        listings={currentListings}
+        handleEditClick={handleEditClick}
+        handleDeleteClick={handleDeleteClick}
+      />
     </div>
   );
 }
