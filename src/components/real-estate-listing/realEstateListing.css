@@ -1,6 +1,6 @@
 .realEstateListing {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   max-width: 900px;
+  margin: auto;
 }

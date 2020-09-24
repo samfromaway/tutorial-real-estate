@@ -3,7 +3,7 @@ import './realEstateCardPrice.css';
 
 const RealEstateCardPrice = ({ price }) => {
   const priceContent = price.toLocaleString();
-  return <h4 className="realEstateCardPrice">{priceContent}</h4>;
+  return <h4 className="realEstateCardPrice">{`USD ${priceContent}`}</h4>;
 };
 
 export default RealEstateCardPrice;

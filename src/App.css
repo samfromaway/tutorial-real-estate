@@ -1,23 +1,22 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+  overflow-y: scroll;
 }
 
 .app {
   background-color: #f6f6f6;
   min-height: 100vh;
-}
-.realEstate {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  align-items: center;
-  margin: auto;
+  align-items: center; */
 }
 
 select {

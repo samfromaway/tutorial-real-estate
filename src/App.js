@@ -84,10 +84,8 @@ function App() {
 
   return (
     <div className="app">
-      <div className="realEstate">
-        <RealEstateHeader query={query} handleQueryChange={handleQueryChange} />
-        <RealEstateListing listings={filteredListings} />
-      </div>
+      <RealEstateHeader query={query} handleQueryChange={handleQueryChange} />
+      <RealEstateListing listings={filteredListings} />
     </div>
   );
 }
