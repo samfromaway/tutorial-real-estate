@@ -78,6 +78,7 @@ function App() {
     setTitle('');
     setPrice('');
     setLocation('');
+    setCurrentListing({});
   };
 
   const handleAddOrEditClick = () => {
