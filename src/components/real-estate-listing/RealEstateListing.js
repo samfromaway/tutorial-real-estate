@@ -6,6 +6,7 @@ import {
   deleteListing,
   editClick,
   filterListings,
+  getListings,
 } from '../../context/listings/ListingsState';
 
 const RealEstateListing = () => {
@@ -29,6 +30,10 @@ const RealEstateListing = () => {
     const newItem = item[0];
     editClick(listingsDispatch, newItem);
   };
+
+  useEffect(() => {
+    getListings(listingsDispatch);
+  }, [listingsDispatch]);
 
   useEffect(() => {
     filterListings(listingsDispatch, query);

@@ -17,12 +17,12 @@ const RealEstateCard = ({ data, handleEditClick, handleDeleteClick }) => {
       <RealEstateCardTitle title={data.title} />
       <hr />
       <RealEstateCardDetails
-        location={data.location}
-        rooms={data.rooms}
-        area={data.area}
+        location={data.title}
+        rooms={data.title}
+        area={data.title}
       />
       <hr />
-      <RealEstateCardPrice price={data.price} />
+      <RealEstateCardPrice price={data.id} />
     </div>
   );
 };
