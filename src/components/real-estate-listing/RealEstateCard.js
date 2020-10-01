@@ -16,13 +16,9 @@ const RealEstateCard = ({ data, handleEditClick, handleDeleteClick }) => {
       />
       <RealEstateCardTitle title={data.title} />
       <hr />
-      <RealEstateCardDetails
-        location={data.title}
-        rooms={data.title}
-        area={data.title}
-      />
+      <RealEstateCardDetails location={data.location} />
       <hr />
-      <RealEstateCardPrice price={data.id} />
+      <RealEstateCardPrice price={data.price} />
     </div>
   );
 };

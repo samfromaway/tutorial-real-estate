@@ -35,6 +35,8 @@ const listings = [
   },
 ];
 
+const API_URL = 'http://localhost:3000/api/v1';
+
 export const useListings = () => {
   const { state, dispatch } = useContext(ListingsContext);
   return [state, dispatch];
@@ -43,7 +45,7 @@ export const useListings = () => {
 export async function getListings(dispatch) {
   setLoading(dispatch);
   try {
-    const res = await fetch('https://jsonplaceholder.typicode.com/posts/');
+    const res = await fetch(API_URL);
     const data = await res.json();
 
     dispatch({
