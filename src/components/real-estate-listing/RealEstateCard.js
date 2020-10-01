@@ -16,11 +16,7 @@ const RealEstateCard = ({ data, handleEditClick, handleDeleteClick }) => {
       />
       <RealEstateCardTitle title={data.title} />
       <hr />
-      <RealEstateCardDetails
-        location={data.location}
-        rooms={data.rooms}
-        area={data.area}
-      />
+      <RealEstateCardDetails location={data.location} />
       <hr />
       <RealEstateCardPrice price={data.price} />
     </div>

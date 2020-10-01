@@ -2,7 +2,7 @@ import React from 'react';
 import LocationIcon from '../../images/icons/location.svg';
 import './realEstateCardDetails.css';
 
-const RealEstateCardDetails = ({ location, rooms, area }) => {
+const RealEstateCardDetails = ({ location }) => {
   return (
     <div className="realEstateCardDetails">
       <div className="realEstateCardDetails__detail">
