@@ -60,11 +60,6 @@ export default (state, action) => {
         };
       }
 
-    case 'CHANGE_INPUT':
-      return {
-        ...state,
-        [action.payload.input]: action.payload.text,
-      };
     case 'CLEAR_INPUT':
       return {
         ...state,

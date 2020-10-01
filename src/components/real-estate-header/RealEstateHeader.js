@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import RealEstateFilter from './RealEstateFilter';
 import './realEstateHeader.css';
 import RealEstateInputs from './RealEstateInputs';
@@ -9,19 +9,14 @@ import {
   clearInput,
   queryChange,
   setIsFiltered,
-  changeInput,
 } from '../../context/listings/ListingsState';
 
 const RealEstateHeader = () => {
   const [listingsState, listingsDispatch] = useListings();
-  const {
-    query,
-    title,
-    price,
-    location,
-    isEdit,
-    currentListing,
-  } = listingsState;
+  const { query, isEdit, currentListing } = listingsState;
+  const [title, setTitle] = useState('');
+  const [location, setLocation] = useState('');
+  const [price, setPrice] = useState('');
 
   const handleAddOrEditClick = () => {
     if (isEdit) {
@@ -57,7 +52,19 @@ const RealEstateHeader = () => {
   };
 
   const handleInputChange = (e) => {
-    changeInput(listingsDispatch, e.target.value, e.target.name);
+    switch (e.target.name) {
+      case 'title':
+        setTitle(e.target.value);
+        break;
+      case 'location':
+        setLocation(e.target.value);
+        break;
+      case 'price':
+        setPrice(e.target.value);
+        break;
+      default:
+        throw new Error('Wrong switch case handle change');
+    }
   };
 
   return (

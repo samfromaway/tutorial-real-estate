@@ -97,20 +97,10 @@ export const filterListings = (dispatch, query) => {
   });
 };
 
-export const changeInput = (dispatch, text, input) => {
-  dispatch({
-    type: 'CHANGE_INPUT',
-    payload: { text, input },
-  });
-};
-
 const ListingsState = ({ children }) => {
   const initialState = {
     listings: [],
     query: '',
-    title: '',
-    price: '',
-    location: '',
     isEdit: false,
     isFiltered: false,
     filteredListings: [],
