@@ -37,7 +37,7 @@ const RealEstateListing = () => {
 
   useEffect(() => {
     filterListings(listingsDispatch, query);
-  }, [listingsDispatch, query]);
+  }, [listingsDispatch, query, listings]);
 
   if (loading) {
     return <h2 style={{ paddingTop: 10, textAlign: 'center' }}>Loading...</h2>;

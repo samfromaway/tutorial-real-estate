@@ -2,39 +2,6 @@ import React, { useReducer, useContext } from 'react';
 import ListingsContext from './listingsContext';
 import ListingsReducer from './listingsReducer';
 
-const listings = [
-  {
-    title: 'Nice Home1',
-    location: 'New York',
-    price: 500000,
-    id: '109',
-  },
-  {
-    title: 'Nice Home2',
-    location: 'Los Angeles',
-    price: 500000,
-    id: '108',
-  },
-  {
-    title: 'Nice Home3',
-    location: 'New York',
-    price: 500000,
-    id: '107',
-  },
-  {
-    title: 'Nice Home4',
-    location: 'Los Angeles',
-    price: 500000,
-    id: '106',
-  },
-  {
-    title: 'Nice Home5',
-    location: 'New York',
-    price: 500000,
-    id: '105',
-  },
-];
-
 const API_URL = 'http://localhost:3000/api/v1';
 
 export const useListings = () => {
@@ -43,8 +10,6 @@ export const useListings = () => {
 };
 
 export async function getListings(dispatch) {
-  setLoading(dispatch);
-
   const res = await fetch(API_URL);
   const data = await res.json();
 
@@ -55,8 +20,6 @@ export async function getListings(dispatch) {
 }
 
 export async function addListing(dispatch, newListing) {
-  setLoading(dispatch);
-
   const res = await fetch(API_URL, {
     method: 'POST',
     body: JSON.stringify({
@@ -75,8 +38,6 @@ export async function addListing(dispatch, newListing) {
 }
 
 export async function deleteListing(dispatch, id) {
-  setLoading(dispatch);
-
   const res = await fetch(`${API_URL}/${id}`, {
     method: 'DELETE',
   });
@@ -88,7 +49,6 @@ export async function deleteListing(dispatch, id) {
 }
 
 export async function editListing(dispatch, updatedListing) {
-  setLoading(dispatch);
   const updatedListingId = updatedListing.id;
 
   const res = await fetch(`${API_URL}/${updatedListingId}`, {
@@ -110,8 +70,6 @@ export async function editListing(dispatch, updatedListing) {
     },
   });
 }
-
-export const setLoading = (dispatch) => dispatch({ type: 'SET_LOADING' });
 
 export const clearInput = (dispatch) => dispatch({ type: 'CLEAR_INPUT' });
 
@@ -148,7 +106,7 @@ export const changeInput = (dispatch, text, input) => {
 
 const ListingsState = ({ children }) => {
   const initialState = {
-    listings: listings,
+    listings: [],
     query: '',
     title: '',
     price: '',

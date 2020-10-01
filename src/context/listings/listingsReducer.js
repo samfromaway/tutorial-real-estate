@@ -4,13 +4,11 @@ export default (state, action) => {
       return {
         ...state,
         listings: action.payload,
-        loading: false,
       };
     case 'ADD_LISTING':
       return {
         ...state,
         listings: [action.payload, ...state.listings],
-        loading: false,
       };
     case 'DELETE_LISTING':
       return {
@@ -18,7 +16,6 @@ export default (state, action) => {
         listings: state.listings.filter(
           (element) => element.id !== action.payload
         ),
-        loading: false,
       };
     case 'EDIT_LISTING':
       return {
@@ -28,7 +25,6 @@ export default (state, action) => {
             ? action.payload.updatedItem
             : element
         ),
-        loading: false,
       };
     case 'EDIT_CLICK':
       return {
@@ -69,11 +65,6 @@ export default (state, action) => {
         ...state,
         [action.payload.input]: action.payload.text,
       };
-    case 'SET_LOADING':
-      return {
-        ...state,
-        loading: true,
-      };
     case 'CLEAR_INPUT':
       return {
         ...state,
@@ -87,7 +78,6 @@ export default (state, action) => {
       return {
         ...state,
         error: action.payload,
-        loading: false,
       };
     default:
       throw new Error('Unsupported action type of listings');
