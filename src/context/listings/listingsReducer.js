@@ -63,9 +63,6 @@ export default (state, action) => {
     case 'CLEAR_INPUT':
       return {
         ...state,
-        title: '',
-        price: '',
-        location: '',
         isEdit: false,
         currentListings: {},
       };

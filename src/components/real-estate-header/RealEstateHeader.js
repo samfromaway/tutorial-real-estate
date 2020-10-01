@@ -37,10 +37,16 @@ const RealEstateHeader = () => {
       addListing(listingsDispatch, newListing);
     }
     clearInput(listingsDispatch);
+    setTitle('');
+    setLocation('');
+    setPrice('');
   };
 
   const handleClearClick = () => {
     clearInput(listingsDispatch);
+    setTitle('');
+    setLocation('');
+    setPrice('');
   };
 
   const handleQueryChange = (e) => {
