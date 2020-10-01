@@ -1,43 +1,43 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import RealEstateCard from './RealEstateCard';
 import './realEstateListing.css';
-import {
-  useListings,
-  deleteListing,
-  editClick,
-  filterListings,
-  getListings,
-} from '../../context/listings/ListingsState';
+import ListingsContext from './../../context/listings/listingsContext';
 
 const RealEstateListing = () => {
-  const [listingsState, listingsDispatch] = useListings();
+  const listingsContext = useContext(ListingsContext);
   const {
     listings,
     query,
     filteredListings,
     isFiltered,
     loading,
-  } = listingsState;
+    getListings,
+    deleteListing,
+    editClick,
+    filterListings,
+  } = listingsContext;
 
   const currentListings = isFiltered ? filteredListings : listings;
 
   const handleDeleteClick = (e) => {
-    deleteListing(listingsDispatch, e.target.value);
+    deleteListing(e.target.value);
   };
 
   const handleEditClick = (e) => {
     const item = listings.filter((listing) => listing.id === e.target.value);
     const newItem = item[0];
-    editClick(listingsDispatch, newItem);
+    editClick(newItem);
   };
 
   useEffect(() => {
-    getListings(listingsDispatch);
-  }, [listingsDispatch]);
+    getListings();
+    // eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
-    filterListings(listingsDispatch, query);
-  }, [listingsDispatch, query, listings]);
+    filterListings(query);
+    // eslint-disable-next-line
+  }, [query, listings]);
 
   if (loading) {
     return <h2 style={{ paddingTop: 10, textAlign: 'center' }}>Loading...</h2>;

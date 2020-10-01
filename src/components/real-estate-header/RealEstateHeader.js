@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import RealEstateFilter from './RealEstateFilter';
 import './realEstateHeader.css';
 import RealEstateInputs from './RealEstateInputs';
-import {
-  useListings,
-  addListing,
-  editListing,
-  clearInput,
-  queryChange,
-  setIsFiltered,
-} from '../../context/listings/ListingsState';
+
+import ListingsContext from './../../context/listings/listingsContext';
 
 const RealEstateHeader = () => {
-  const [listingsState, listingsDispatch] = useListings();
-  const { query, isEdit, currentListing } = listingsState;
+  const listingsContext = useContext(ListingsContext);
+  const {
+    query,
+    isEdit,
+    currentListing,
+    addListing,
+    setIsFiltered,
+    editListing,
+    clearInput,
+    queryChange,
+  } = listingsContext;
+
   const [title, setTitle] = useState('');
   const [location, setLocation] = useState('');
   const [price, setPrice] = useState('');
@@ -26,7 +30,7 @@ const RealEstateHeader = () => {
         price: +price,
         id: currentListing.id,
       };
-      editListing(listingsDispatch, newListing);
+      editListing(newListing);
     } else {
       const newListing = {
         title,
@@ -34,21 +38,21 @@ const RealEstateHeader = () => {
         price: +price,
         id: Math.floor(Math.random() * 101).toLocaleString(),
       };
-      addListing(listingsDispatch, newListing);
+      addListing(newListing);
     }
-    clearInput(listingsDispatch);
+    clearInput();
   };
 
   const handleClearClick = () => {
-    clearInput(listingsDispatch);
+    clearInput();
   };
 
   const handleQueryChange = (e) => {
     if (e.target.value) {
-      setIsFiltered(listingsDispatch, true);
-    } else setIsFiltered(listingsDispatch, false);
+      setIsFiltered(true);
+    } else setIsFiltered(false);
 
-    queryChange(listingsDispatch, e.target.value);
+    queryChange(e.target.value);
   };
 
   const handleInputChange = (e) => {
