@@ -44,113 +44,71 @@ export const useListings = () => {
 
 export async function getListings(dispatch) {
   setLoading(dispatch);
-  try {
-    const res = await fetch(API_URL);
-    const data = await res.json();
 
-    dispatch({
-      type: 'GET_LISTINGS',
-      payload: data,
-    });
-    // catch won't work with fetch, use axios... or delete the catch block
-  } catch (err) {
-    console.error(err);
-    dispatch({
-      type: 'LISTINGS_ERROR',
-      payload: err,
-    });
-  }
+  const res = await fetch(API_URL);
+  const data = await res.json();
+
+  dispatch({
+    type: 'GET_LISTINGS',
+    payload: data,
+  });
 }
 
 export async function addListing(dispatch, newListing) {
   setLoading(dispatch);
-  try {
-    const res = await fetch('https://jsonplaceholder.typicode.com/posts', {
-      method: 'POST',
-      body: JSON.stringify({
-        title: 'foo',
-        body: 'bar',
-        userId: 1,
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    });
-    const data = await res.json();
 
-    dispatch({
-      type: 'ADD_LISTING',
-      payload: data,
-    });
-    // catch won't work with fetch, use axios... or delete the catch block
-  } catch (err) {
-    console.error(err);
-    dispatch({
-      type: 'LISTINGS_ERROR',
-      payload: err,
-    });
-  }
+  const res = await fetch(API_URL, {
+    method: 'POST',
+    body: JSON.stringify({
+      ...newListing,
+    }),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  });
+  const data = await res.json();
+
+  dispatch({
+    type: 'ADD_LISTING',
+    payload: data,
+  });
 }
 
 export async function deleteListing(dispatch, id) {
   setLoading(dispatch);
-  try {
-    const res = await fetch('https://jsonplaceholder.typicode.com/posts/1', {
-      method: 'PUT',
-      body: JSON.stringify({
-        id: 1,
-        title: 'foo',
-        body: 'bar',
-        userId: 1,
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    });
-    const data = await res.json();
-    dispatch({
-      type: 'DELETE_LISTING',
-      payload: data.id,
-    });
-    // catch won't work with fetch, use axios... or delete the catch block
-  } catch (err) {
-    console.error(err);
-    dispatch({
-      type: 'LISTINGS_ERROR',
-      payload: err,
-    });
-  }
+
+  const res = await fetch(`${API_URL}/${id}`, {
+    method: 'DELETE',
+  });
+  const data = await res.json();
+  dispatch({
+    type: 'DELETE_LISTING',
+    payload: data.id,
+  });
 }
 
 export async function editListing(dispatch, updatedListing) {
   setLoading(dispatch);
-  try {
-    const res = await fetch('https://jsonplaceholder.typicode.com/posts/1', {
-      method: 'PATCH',
-      body: JSON.stringify({
-        title: 'foo',
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    });
-    const data = await res.json();
+  const updatedListingId = updatedListing.id;
 
-    dispatch({
-      type: 'EDIT_LISTING',
-      payload: {
-        id: data.id,
-        updatedItem: data,
-      },
-    });
-    // catch won't work with fetch, use axios... or delete the catch block
-  } catch (err) {
-    console.error(err);
-    dispatch({
-      type: 'LISTINGS_ERROR',
-      payload: err,
-    });
-  }
+  const res = await fetch(`${API_URL}/${updatedListingId}`, {
+    method: 'PUT',
+    body: JSON.stringify({
+      ...updatedListing,
+    }),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  });
+  const data = await res.json();
+
+  dispatch({
+    type: 'EDIT_LISTING',
+    payload: {
+      id: data.id,
+      updatedItem: data,
+    },
+  });
 }
 
 export const setLoading = (dispatch) => dispatch({ type: 'SET_LOADING' });
