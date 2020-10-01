@@ -41,10 +41,16 @@ const RealEstateHeader = () => {
       addListing(newListing);
     }
     clearInput();
+    setTitle('');
+    setLocation('');
+    setPrice('');
   };
 
   const handleClearClick = () => {
     clearInput();
+    setTitle('');
+    setLocation('');
+    setPrice('');
   };
 
   const handleQueryChange = (e) => {
