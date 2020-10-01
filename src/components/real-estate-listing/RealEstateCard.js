@@ -17,11 +17,7 @@ class RealEstateCard extends React.Component {
         />
         <RealEstateCardTitle title={this.props.data.title} />
         <hr />
-        <RealEstateCardDetails
-          location={this.props.data.location}
-          rooms={this.props.data.rooms}
-          area={this.props.data.area}
-        />
+        <RealEstateCardDetails location={this.props.data.location} />
         <hr />
         <RealEstateCardPrice price={this.props.data.price} />
       </div>
