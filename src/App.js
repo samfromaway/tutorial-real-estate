@@ -45,7 +45,7 @@ function App() {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
   const [location, setLocation] = useState('');
-  const [currentListing, setCurrentListing] = useState('');
+  const [currentListing, setCurrentListing] = useState({});
   const currentListings = isFiltered ? filteredListings : listings;
 
   const handleQueryChange = (e) => {
