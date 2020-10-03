@@ -29,7 +29,7 @@ If you use a branch with a node.js server (in the backend folder) run it on loca
 
 ## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Pull requests are welcome but on new branches. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
 
