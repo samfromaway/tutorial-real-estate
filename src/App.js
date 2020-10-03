@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import RealEstateHeader from './components/real-estate-header/RealEstateHeader';
 import RealEstateListing from './components/real-estate-listing/RealEstateListing';
@@ -54,7 +54,9 @@ function App() {
     } else setIsFiltered(false);
 
     setQuery(e.target.value);
-    // filter(e.target.value);
+
+    // this function would not be necessary with useEffect
+    filter(e.target.value, listings);
   };
 
   const handleEditClick = (e) => {
@@ -71,6 +73,9 @@ function App() {
       (listing) => listing.id !== e.target.value
     );
     setListings(newListings);
+
+    // this function would not be necessary with useEffect
+    filter(query, newListings);
   };
 
   const clearInput = () => {
@@ -97,40 +102,47 @@ function App() {
         price: +price,
         id: Math.floor(Math.random() * 101).toLocaleString(),
       };
+
       addListing(newListing);
     }
     clearInput();
   };
 
   const editCurrentListing = (newListing) => {
-    setListings(
-      listings.map((listing) =>
-        listing.id === currentListing.id ? newListing : listing
-      )
+    const newListings = listings.map((listing) =>
+      listing.id === currentListing.id ? newListing : listing
     );
+    setListings(newListings);
+
+    // this function would not be necessary with useEffect
+    filter(query, newListings);
   };
 
   const addListing = (newListing) => {
-    setListings([newListing, ...listings]);
+    const newListings = [newListing, ...listings];
+    setListings(newListings);
+
+    // this function would not be necessary with useEffect
+    filter(query, newListings);
   };
 
-  // const filter = (query) => {
-  //   if (query) {
-  //     const filteredListings = listings.filter(
-  //       (listing) => listing.location === query
-  //     );
-  //     setFilteredListings(filteredListings);
-  //   } else setFilteredListings([]);
-  // };
-
-  useEffect(() => {
+  const filter = (query, listings) => {
     if (query) {
       const filteredListings = listings.filter(
         (listing) => listing.location === query
       );
       setFilteredListings(filteredListings);
     } else setFilteredListings([]);
-  }, [listings, query]);
+  };
+
+  // useEffect(() => {
+  //   if (query) {
+  //     const filteredListings = listings.filter(
+  //       (listing) => listing.location === query
+  //     );
+  //     setFilteredListings(filteredListings);
+  //   } else setFilteredListings([]);
+  // }, [listings, query]);
 
   return (
     <div className="app">
