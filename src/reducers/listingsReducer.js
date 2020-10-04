@@ -9,7 +9,6 @@ import {
   CHANGE_INPUT,
   SET_LOADING,
   CLEAR_INPUT,
-  LISTINGS_ERROR,
 } from '../actions/types';
 
 const listings = [
@@ -137,14 +136,8 @@ export default function (state = initialState, action) {
         isEdit: false,
         currentListings: {},
       };
-    case LISTINGS_ERROR:
-      return {
-        ...state,
-        error: action.payload,
-        loading: false,
-      };
+
     default:
-      // throw new Error(`Unsupported action type of listings ${action.type}`);
       return state;
   }
 }

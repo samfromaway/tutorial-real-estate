@@ -8,4 +8,3 @@ export const FILTER_LISTINGS = 'FILTER_LISTINGS';
 export const CHANGE_INPUT = 'CHANGE_INPUT';
 export const SET_LOADING = 'SET_LOADING';
 export const CLEAR_INPUT = 'CLEAR_INPUT';
-export const LISTINGS_ERROR = 'LISTINGS_ERROR';
