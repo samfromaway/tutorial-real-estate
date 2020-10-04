@@ -4,12 +4,10 @@ import { LOCATIONS } from './../../constant';
 const RealEstateInputs = ({
   isEdit,
   title,
-  setTitle,
   price,
-  setPrice,
   location,
-  setLocation,
-  clearInput,
+  handleInputChange,
+  handleClearClick,
   handleAddOrEditClick,
 }) => {
   const buttonContent = isEdit ? 'Change' : 'Add';
@@ -21,7 +19,7 @@ const RealEstateInputs = ({
           type="text"
           name="title"
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={handleInputChange}
         />
       </div>
       <div className="inputGroup">
@@ -30,16 +28,12 @@ const RealEstateInputs = ({
           type="text"
           name="price"
           value={price}
-          onChange={(e) => setPrice(e.target.value)}
+          onChange={handleInputChange}
         />
       </div>
       <div className="inputGroup">
         <label htmlFor="location">Location</label>
-        <select
-          name="location"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-        >
+        <select name="location" value={location} onChange={handleInputChange}>
           <option value="">Choose Location</option>
           {LOCATIONS.map((location) => (
             <option key={location.value} value={location.title}>
@@ -51,7 +45,7 @@ const RealEstateInputs = ({
       <button className="button" onClick={handleAddOrEditClick}>
         {buttonContent}
       </button>
-      <button className="button" onClick={clearInput}>
+      <button className="button" onClick={handleClearClick}>
         Clear
       </button>
     </div>
