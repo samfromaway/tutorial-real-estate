@@ -1,5 +1,4 @@
 import {
-  GET_LISTINGS,
   ADD_LISTING,
   DELETE_LISTING,
   EDIT_LISTING,
@@ -11,15 +10,6 @@ import {
   SET_LOADING,
   CLEAR_INPUT,
 } from './types';
-
-export async function getListings(dispatch) {
-  setLoading(dispatch);
-
-  dispatch({
-    type: GET_LISTINGS,
-    payload: dispatch,
-  });
-}
 
 export async function addListing(dispatch, newListing) {
   setLoading(dispatch);

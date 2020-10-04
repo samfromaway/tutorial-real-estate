@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import RealEstateCard from './RealEstateCard';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  getListings,
   editClick,
   deleteListing,
+  filterListings,
 } from '../../actions/listingsActions';
 import './realEstateListing.css';
 
@@ -32,8 +32,8 @@ const RealEstateListing = () => {
     editClick(listingsDispatch, newItem);
   };
   useEffect(() => {
-    getListings(listingsDispatch);
-  }, [listingsDispatch, query]);
+    filterListings(listingsDispatch, query);
+  }, [listingsDispatch, query, listings]);
 
   if (loading) {
     return <h2 style={{ paddingTop: 10, textAlign: 'center' }}>Loading...</h2>;
