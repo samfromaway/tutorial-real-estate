@@ -55,7 +55,6 @@ const initialState = {
   isFiltered: false,
   filteredListings: [],
   currentListing: {},
-  error: null,
   loading: false,
 };
 
