@@ -116,7 +116,6 @@ const ListingsState = ({ children }) => {
     isFiltered: false,
     filteredListings: [],
     currentListing: {},
-    error: null,
     loading: false,
   };
 
