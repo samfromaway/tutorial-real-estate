@@ -40,15 +40,6 @@ export const useListings = () => {
   return [state, dispatch];
 };
 
-export async function getListings(dispatch) {
-  setLoading(dispatch);
-
-  dispatch({
-    type: 'GET_LISTINGS',
-    payload: dispatch,
-  });
-}
-
 export async function addListing(dispatch, newListing) {
   setLoading(dispatch);
 

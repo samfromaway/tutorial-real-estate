@@ -32,7 +32,7 @@ const RealEstateListing = () => {
 
   useEffect(() => {
     filterListings(listingsDispatch, query);
-  }, [listingsDispatch, query]);
+  }, [listingsDispatch, listings, query]);
 
   if (loading) {
     return <h2 style={{ paddingTop: 10, textAlign: 'center' }}>Loading...</h2>;

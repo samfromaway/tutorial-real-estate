@@ -1,11 +1,5 @@
 export default (state, action) => {
   switch (action.type) {
-    case 'GET_LISTINGS':
-      return {
-        ...state,
-        listings: action.payload,
-        loading: false,
-      };
     case 'ADD_LISTING':
       return {
         ...state,
