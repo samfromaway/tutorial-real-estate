@@ -2,10 +2,8 @@ import React from 'react';
 import './realEstateCardTitle.css';
 
 class RealEstateCardTitle extends React.Component {
-  title = this.props.title;
-
   render() {
-    return <h2 className="realEstateCardTitle">{this.title}</h2>;
+    return <h2 className="realEstateCardTitle">{this.props.title}</h2>;
   }
 }
 

@@ -36,19 +36,23 @@ class App extends React.Component {
       id: '105',
     },
   ];
+
   state = {
     query: '',
     listings: this.initialState,
     filteredListings: [],
+    isFiltered: false,
     isEdit: false,
     title: '',
     price: '',
     location: '',
     currentListing: {},
-    currentListings: [],
   };
 
   handleQueryChange = (e) => {
+    if (e.target.value) {
+      this.setState({ isFiltered: true });
+    } else this.setState({ isFiltered: false });
     this.setState({ query: e.target.value });
   };
 
@@ -108,7 +112,6 @@ class App extends React.Component {
       listings: this.state.listings.map((listing) =>
         listing.id === this.state.currentListing.id ? newListing : listing
       ),
-      isEdit: true,
     });
   };
 
@@ -128,11 +131,7 @@ class App extends React.Component {
     this.setState({ location: e.target.value });
   };
 
-  componentDidMount() {
-    this.setState({ currentListings: this.state.listings });
-  }
-
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate = (prevProps, prevState) => {
     // if query or listings change run...
     if (
       this.state.listings !== prevState.listings ||
@@ -144,17 +143,20 @@ class App extends React.Component {
         );
         this.setState({
           filteredListings: filteredListings,
-          currentListings: filteredListings,
+          //currentListings: filteredListings,
         });
       } else
         this.setState({
           filteredListings: [],
-          currentListings: this.state.listings,
+          //currentListings: this.state.listings,
         });
     }
-  }
+  };
 
   render() {
+    const currentListings = this.state.isFiltered
+      ? this.state.filteredListings
+      : this.state.listings;
     return (
       <div className="app">
         <RealEstateHeader
@@ -170,11 +172,11 @@ class App extends React.Component {
           setTitle={this.setTitle}
           setLocation={this.setLocation}
         />
-        {this.state.currentListings.length === 0 && (
+        {currentListings.length === 0 && (
           <h2 style={{ paddingTop: 10, textAlign: 'center' }}>No Results</h2>
         )}
         <RealEstateListing
-          listings={this.state.currentListings}
+          listings={currentListings}
           handleEditClick={this.handleEditClick}
           handleDeleteClick={this.handleDeleteClick}
         />
