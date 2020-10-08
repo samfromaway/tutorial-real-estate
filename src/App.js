@@ -4,6 +4,9 @@ import RealEstateHeader from './components/real-estate-header/RealEstateHeader';
 import RealEstateListing from './components/real-estate-listing/RealEstateListing';
 
 class App extends React.Component {
+  // use arrow functions for methods
+  // so you don't have to bind "this"
+
   initialState = [
     {
       title: 'Nice Home1',
