@@ -143,12 +143,10 @@ class App extends React.Component {
         );
         this.setState({
           filteredListings: filteredListings,
-          //currentListings: filteredListings,
         });
       } else
         this.setState({
           filteredListings: [],
-          //currentListings: this.state.listings,
         });
     }
   };
