@@ -40,7 +40,7 @@ export const useListings = () => {
   return [state, dispatch];
 };
 
-export async function addListing(dispatch, newListing) {
+export function addListing(dispatch, newListing) {
   setLoading(dispatch);
 
   dispatch({
@@ -49,7 +49,7 @@ export async function addListing(dispatch, newListing) {
   });
 }
 
-export async function deleteListing(dispatch, id) {
+export function deleteListing(dispatch, id) {
   setLoading(dispatch);
 
   dispatch({
@@ -58,7 +58,7 @@ export async function deleteListing(dispatch, id) {
   });
 }
 
-export async function editListing(dispatch, updatedListing) {
+export function editListing(dispatch, updatedListing) {
   setLoading(dispatch);
 
   dispatch({
